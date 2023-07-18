@@ -11,7 +11,11 @@ import numpy as np
 import os
 
 app = Flask(__name__)
-app.secret_key = 'Ironman@2'
+# Set secret key according to  you.
+app.secret_key = '123456789'
+# For running the database either you have to create the database locally on your machine.
+# OR
+# You can create an sql/postgresql/etc. database online on websites like render etc. and change the database link below.
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/waste_mangement_system'
 db = SQLAlchemy(app)
 api = Api(app)
