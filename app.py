@@ -12,7 +12,7 @@ import os
 
 app = Flask(__name__)
 app.secret_key = 'Ironman@2'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/waste_mangement_system'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://waste_management_system_database_5guq_user:zqeLkrTQqoGh9UyaxQQJgB3Ncmp4ceUz@dpg-cg6s9jl269v5l67ata4g-a.oregon-postgres.render.com/waste_management_system_database_5guq'
 db = SQLAlchemy(app)
 api = Api(app)
 
