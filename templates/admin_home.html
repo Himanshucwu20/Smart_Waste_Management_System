@@ -216,7 +216,8 @@ itemContainers.forEach((itemContainer) => {
   qrScanBtn.addEventListener('click', async () => {
     try {
       // Get the camera stream and display the video
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: { ideal: 'environment' });
       video.srcObject = stream;
       video.style.display = 'block';
       await video.play();
