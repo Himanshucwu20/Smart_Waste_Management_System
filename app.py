@@ -12,7 +12,7 @@ import pybase64
 
 app = Flask(__name__)
 app.secret_key = 'Ironman@2'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://smart_db_ag8j_user:fqnTV0rvMgxSOqNJNKd2NWmT7vv2BSO6@dpg-cva82edumphs73fpodr0-a.oregon-postgres.render.com/smart_db_ag8j'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://swms_db_z49t_user:ROhTK5ICuYaDMH5o9AZ2RFYltTGYHPH3@dpg-cva8kb8fnakc739ojl4g-a.oregon-postgres.render.com/swms_db_z49t'
 db = SQLAlchemy(app)
 api = Api(app)
 # postgresql://waste_management_system_database_5guq_user:zqeLkrTQqoGh9UyaxQQJgB3Ncmp4ceUz@dpg-cg6s9jl269v5l67ata4g-a.oregon-postgres.render.com/waste_management_system_database_5guq
