@@ -5,10 +5,10 @@ from flask_restful import Api
 import qrcode
 import io
 import pybase64
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.image import load_img, img_to_array
-import numpy as np
-import os
+# from tensorflow.keras.models import load_model
+# from tensorflow.keras.preprocessing.image import load_img, img_to_array
+# import numpy as np
+# import os
 
 app = Flask(__name__)
 app.secret_key = 'Ironman@2'
@@ -16,18 +16,18 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://waste_management_system_da
 db = SQLAlchemy(app)
 api = Api(app)
 
-model = load_model('waste_classifier.h5')
+# model = load_model('waste_classifier.h5')
 
 # classes = {0: 'Organic Waste', 1: 'Recyclable Waste'}
 
-def preprocess_image(image_path):
-    # Load the image and convert it to a numpy array
-    img = load_img(image_path, target_size=(64, 64))
-    img_array = img_to_array(img)
-    img_array = np.expand_dims(img_array, axis=0)
-    # Preprocess the image
-    # img_array /= 255.
-    return img_array
+# def preprocess_image(image_path):
+#     # Load the image and convert it to a numpy array
+#     img = load_img(image_path, target_size=(64, 64))
+#     img_array = img_to_array(img)
+#     img_array = np.expand_dims(img_array, axis=0)
+#     # Preprocess the image
+#     # img_array /= 255.
+#     return img_array
 
 class userdata(db.Model):
     '''
@@ -98,27 +98,27 @@ def preeds():
     return render_template('predict.html')
 
 @app.route('/predict', methods=['GET','POST'])
-def predict():
-    # Get the uploaded file
-    image_file = request.files['image']
-    # Save the file to a temporary directory
-    temp_dir = os.path.join(app.root_path, 'temp')
-    os.makedirs(temp_dir, exist_ok=True)
-    temp_path = os.path.join(temp_dir, image_file.filename)
-    image_file.save(temp_path)
-    # Preprocess the image
-    img_array = preprocess_image(temp_path)
-    # Make a prediction
-    prediction = model.predict(img_array)
-    # Get the class label
-    if prediction[0][0] == 1:
-        class_label = "Recyclable Waste"
-    else:
-        class_label = "Organic Waste"
-    # class_id = np.argmax(prediction[0])
-    # class_label = classes[class_id]
-    # Return the result
-    return render_template('predict.html',class_label=class_label)
+# def predict():
+#     # Get the uploaded file
+#     image_file = request.files['image']
+#     # Save the file to a temporary directory
+#     temp_dir = os.path.join(app.root_path, 'temp')
+#     os.makedirs(temp_dir, exist_ok=True)
+#     temp_path = os.path.join(temp_dir, image_file.filename)
+#     image_file.save(temp_path)
+#     # Preprocess the image
+#     img_array = preprocess_image(temp_path)
+#     # Make a prediction
+#     prediction = model.predict(img_array)
+#     # Get the class label
+#     if prediction[0][0] == 1:
+#         class_label = "Recyclable Waste"
+#     else:
+#         class_label = "Organic Waste"
+#     # class_id = np.argmax(prediction[0])
+#     # class_label = classes[class_id]
+#     # Return the result
+#     return render_template('predict.html',class_label=class_label)
 
 @app.route("/signup", methods = ['GET', 'POST'])
 def signup():
