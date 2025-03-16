@@ -210,7 +210,7 @@ def admin():
     if request.method=='POST':
         usern=request.form.get('usern')
         passw=request.form.get('passw')
-        if ((usern == "admin") and (passw =="ironman2")):
+        if ((usern == "admin") and (passw =="admin")):
             print("Hello")
             session['gname']=usern
             return redirect(url_for('admin_home'))
