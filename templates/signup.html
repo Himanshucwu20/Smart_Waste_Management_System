@@ -61,6 +61,15 @@
                       <div class="img" style="background-image: url({{url_for('static',filename='bgsu.jpg')}});"></div>
                         <div class="card-header">Register</div>
                         <div class="card-body">
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                                  {% if messages %}
+                                    {% for category, message in messages %}
+                                      <div class="alert alert-{{ category }}" role="alert">
+                                        {{ message }}
+                                      </div>
+                                    {% endfor %}
+                                  {% endif %}
+                                {% endwith %}
                             <form name="my-form" onsubmit="return validform()" action="/signup" method="post">
                                 <div class="form-group row">
                                     <label for="full_name" class="col-md-4 col-form-label text-md-right">User Name</label>
