@@ -9,6 +9,8 @@ import pybase64
 # from tensorflow.keras.preprocessing.image import load_img, img_to_array
 # import numpy as np
 # import os
+from flask import flash
+
 
 app = Flask(__name__)
 app.secret_key = 'Ironman@2'
@@ -35,7 +37,7 @@ class userdata(db.Model):
     sno, name phone_num, msg, date, email
     '''
     sno = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), nullable=False)
+    name = db.Column(db.String(80), nullable=False,unique=True)
     phone_num = db.Column(db.String(12), nullable=False)
     msg = db.Column(db.String(120), nullable=False)
     date = db.Column(db.String(12), nullable=True)
