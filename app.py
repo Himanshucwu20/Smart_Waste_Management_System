@@ -123,18 +123,34 @@ def preeds():
 
 @app.route("/signup", methods = ['GET', 'POST'])
 def signup():
-    if(request.method=='POST'):
-        '''Add entry to the database'''
+    if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
         phone = request.form.get('phone')
         message = request.form.get('message')
         address = request.form.get('address')
-        entry = userdata(name=name, phone_num = phone, msg = message, date= datetime.now(),email = email, address=address )
+
+        # Check if the username already exists
+        existing_user = userdata.query.filter_by(name=name).first()
+        if existing_user:
+            flash('Username already exists. Please choose a different one.', 'warning')
+            return redirect(url_for('signup'))
+
+        # If username does not exist, add the entry
+        entry = userdata(
+            name=name,
+            phone_num=phone,
+            msg=message,
+            date=datetime.now(),
+            email=email,
+            address=address
+        )
         db.session.add(entry)
         db.session.commit()
-        session['name']=name
+
+        session['name'] = name
         return redirect(url_for('user_home'))
+
     return render_template('signup.html')
 
 @app.route('/login',methods=['GET','POST'])
